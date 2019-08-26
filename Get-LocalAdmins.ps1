@@ -43,16 +43,14 @@ Source script: https://gallery.technet.microsoft.com/223cd1cd-2804-408b-9677-5d6
     # executing the script
     foreach ($computer in $Computers) {
         if (Test-Connection -ComputerName $computer -Quiet -count 1) {
-            Add-Content -value $computer -path $env:USERPROFILE\AppData\Local\Temp\livePCs.txt -Force
+            $livePCs += $computer
         } else {
             Write-Verbose -Message ('{0} is unreachable' -f $computer) -Verbose
         }
     }
 
-    $liveComputers = Get-Content -Path $env:USERPROFILE\AppData\Local\Temp\livePCs.txt
-
     $list = new-object -TypeName System.Collections.ArrayList
-    foreach ($computer in $liveComputers) {
+    foreach ($computer in $livePCs) {
         $admins = Get-WmiObject -Class win32_groupuser -ComputerName $computer | 
             Where-Object {$_.groupcomponent -like '*"Administrators"'} 
         $obj = New-Object -TypeName PSObject -Property @{
@@ -67,9 +65,4 @@ Source script: https://gallery.technet.microsoft.com/223cd1cd-2804-408b-9677-5d6
         $null = $list.add($obj)
     }
     $list
-
-    # Cleaning up the txt files 
-    if (Test-Path -Path $env:USERPROFILE\AppData\Local\Temp\livePCs.txt) {
-        Remove-Item -Path $env:USERPROFILE\AppData\Local\Temp\livePCs.txt -Force
-    }
 }
