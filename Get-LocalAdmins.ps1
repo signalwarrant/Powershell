@@ -1,37 +1,29 @@
 Function Get-LocalAdmins {
 <#
 .SYNOPSIS
-
 Gets the members of the local administrators of the computer 
 and outputs the result to a CSV file.
 
 .PARAMETER Computers
-
 Specifies the Computer names of devices to query
 
 .INPUTS
-
 System.String. Get-LocalAdmins can accept a string value to
 determine the Computers parameter.
 
 .EXAMPLE
-
 Get-LocalAdmins -Computers CL1,CL2
 
 .EXAMPLE
-
 Get-LocalAdmins -Computers (Get-Content -Path "$env:HOMEPATH\Desktop\computers.txt")
 
 .EXAMPLE
-
 Get-LocalAdmins -Computers DC,SVR8 | Format-Table -AutoSize -Wrap
 
 .EXAMPLE
-
 Get-LocalAdmins -Computers DC,SVR8 | Export-Csv -Path "$env:HOMEPATH\Desktop\LocalAdmin.csv" -NoTypeInformation
 
 .LINK
-
 Source script: https://gallery.technet.microsoft.com/223cd1cd-2804-408b-9677-5d62c2964883
 #>
 
