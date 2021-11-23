@@ -32,8 +32,11 @@ Function Convert-TextToSpeech {
     } # End End.
 }
 
-# Testing Affirmations
-$restContent = Invoke-RestMethod -Uri "https://raw.githubusercontent.com/signalwarrant/Powershell/master/PSAffirmaitons/affirmations.json"
-$restContent | Get-Random -Count 1
+$uri = "https://raw.githubusercontent.com/signalwarrant/Powershell/master/PSAffirmaitons/affirmations.json" 
 
-Convert-TextToSpeech -text $restContent
+# Testing Affirmations
+$restContent = Invoke-RestMethod -Uri $uri 
+$text = $restContent | Get-Random -Count 1
+$text
+
+Convert-TextToSpeech -text $text
