@@ -1,6 +1,1 @@
-# Powershell
-
-- Website: www.signalwarrant.com
-- Twitter: @signalwarrant
-- Facebook: facebook.com/signalwarrant/
-- YouTube Subscribe link: https://www.youtube.com/c/SignalWarrant1?sub_confirmation=1
+## Any code that previously lived here has been moved to https://github.com/cyberautomate/PubPowerShell
